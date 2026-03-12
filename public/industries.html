@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Suite for SMBs - Industry Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur border-b border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-brain text-3xl text-purple-400"></i>
+        <span class="text-xl font-bold">AI Suite for SMBs</span>
+      </div>
+      <div class="space-x-6">
+        <a href="#industries" class="hover:text-purple-400">Industries</a>
+        <a href="#pricing" class="hover:text-purple-400">Pricing</a>
+        <a href="#features" class="hover:text-purple-400">Features</a>
+        <a href="/dashboard" class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg">Start Free Trial</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="gradient-bg min-h-screen flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="text-center">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+          AI-Powered Business Suite for <span class="text-purple-300">SMBs</span>
+        </h1>
+        <p class="text-xl text-purple-100 mb-8 max-w-3xl mx-auto">
+          One platform for AI receptionist, scheduling, CRM, billing, and more. 
+          Built for plumbers, dentists, lawyers, real estate agents, restaurants, and service businesses.
+        </p>
+        <div class="flex justify-center space-x-4 mb-8">
+          <a href="/dashboard" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 text-lg">
+            Start 14-Day Free Trial
+          </a>
+          <a href="#demo" class="glass bg-white/10 px-8 py-4 rounded-lg font-semibold hover:bg-white/20 text-lg">
+            <i class="fas fa-play mr-2"></i> Watch Demo
+          </a>
+        </div>
+        <div class="flex justify-center items-center space-x-8 text-purple-200 text-sm">
+          <div><i class="fas fa-check mr-2"></i>No credit card required</div>
+          <div><i class="fas fa-check mr-2"></i>14-day free trial</div>
+          <div><i class="fas fa-check mr-2"></i>Cancel anytime</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section id="industries" class="py-20 bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Built for Your Industry</h2>
+        <p class="text-xl text-gray-400">Industry-specific AI solutions that understand your business</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Plumbers -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition cursor-pointer" onclick="showIndustry('plumber')">
+          <div class="w-16 h-16 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-wrench text-3xl text-blue-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Plumbers & HVAC</h3>
+          <p class="text-gray-400 mb-4">Handle emergency calls 24/7, schedule service calls, provide instant quotes.</p>
+          <ul class="space-y-2 text-gray-300">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Emergency call routing</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Service area detection</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Instant price estimates</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Technician dispatch</li>
+          </ul>
+          <a href="/dashboard?industry=plumber" class="mt-6 block text-center bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition">
+            See Plumber Demo
+          </a>
+        </div>
+
+        <!-- Dentists -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-pink-500 transition cursor-pointer" onclick="showIndustry('dentist')">
+          <div class="w-16 h-16 bg-pink-600/20 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-tooth text-3xl text-pink-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Dentists & Medical</h3>
+          <p class="text-gray-400 mb-4">Patient scheduling, appointment reminders, insurance verification, HIPAA compliant.</p>
+          <ul class="space-y-2 text-gray-300">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Online booking</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Appointment reminders</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Patient intake forms</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>HIPAA compliant</li>
+          </ul>
+          <a href="/dashboard?industry=dentist" class="mt-6 block text-center bg-pink-600 hover:bg-pink-700 py-3 rounded-lg font-semibold transition">
+            See Dentist Demo
+          </a>
+        </div>
+
+        <!-- Lawyers -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-purple-500 transition cursor-pointer" onclick="showIndustry('lawyer')">
+          <div class="w-16 h-16 bg-purple-600/20 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-balance-scale text-3xl text-purple-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Lawyers & Legal</h3>
+          <p class="text-gray-400 mb-4">Case intake, consultation scheduling, lead qualification, conflict checking.</p>
+          <ul class="space-y-2 text-gray-300">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Case intake automation</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Consultation booking</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Lead qualification</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Conflict checking</li>
+          </ul>
+          <a href="/dashboard?industry=lawyer" class="mt-6 block text-center bg-purple-600 hover:bg-purple-700 py-3 rounded-lg font-semibold transition">
+            See Lawyer Demo
+          </a>
+        </div>
+
+        <!-- Real Estate -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-green-500 transition cursor-pointer" onclick="showIndustry('realestate')">
+          <div class="w-16 h-16 bg-green-600/20 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-home text-3xl text-green-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Real Estate Agents</h3>
+          <p class="text-gray-400 mb-4">Instant lead response, showing scheduling, pre-qualification, follow-up automation.</p>
+          <ul class="space-y-2 text-gray-300">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Instant lead response</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Showing scheduling</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Buyer pre-qualification</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>CRM integration</li>
+          </ul>
+          <a href="/dashboard?industry=realestate" class="mt-6 block text-center bg-green-600 hover:bg-green-700 py-3 rounded-lg font-semibold transition">
+            See Real Estate Demo
+          </a>
+        </div>
+
+        <!-- Restaurants -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-orange-500 transition cursor-pointer" onclick="showIndustry('restaurant')">
+          <div class="w-16 h-16 bg-orange-600/20 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-utensils text-3xl text-orange-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Restaurants</h3>
+          <p class="text-gray-400 mb-4">Reservations, takeout orders, menu inquiries, table management, reviews.</p>
+          <ul class="space-y-2 text-gray-300">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Table reservations</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Takeout orders</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Menu inquiries</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Review management</li>
+          </ul>
+          <a href="/dashboard?industry=restaurant" class="mt-6 block text-center bg-orange-600 hover:bg-orange-700 py-3 rounded-lg font-semibold transition">
+            See Restaurant Demo
+          </a>
+        </div>
+
+        <!-- Hotels -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-teal-500 transition cursor-pointer" onclick="showIndustry('hotel')">
+          <div class="w-16 h-16 bg-teal-600/20 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-hotel text-3xl text-teal-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Hotels & Hospitality</h3>
+          <p class="text-gray-400 mb-4">Reservations, concierge services, check-in/out, guest requests, upselling.</p>
+          <ul class="space-y-2 text-gray-300">
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Room reservations</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Concierge AI</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Check-in automation</li>
+            <li><i class="fas fa-check text-green-500 mr-2"></i>Upsell opportunities</li>
+          </ul>
+          <a href="/dashboard?industry=hotel" class="mt-6 block text-center bg-teal-600 hover:bg-teal-700 py-3 rounded-lg font-semibold transition">
+            See Hotel Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Everything Your Business Needs</h2>
+        <p class="text-xl text-gray-400">All-in-one AI platform to automate your business</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-phone text-purple-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">AI Receptionist</h3>
+          <p class="text-gray-400 text-sm">24/7 call answering, lead qualification, smart routing</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-calendar text-blue-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Smart Scheduling</h3>
+          <p class="text-gray-400 text-sm">Online booking, reminders, calendar sync, no-shows reduction</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-users text-green-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">CRM</h3>
+          <p class="text-gray-400 text-sm">Customer database, lead tracking, personalized communication</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-yellow-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-file-invoice text-yellow-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Billing & Invoicing</h3>
+          <p class="text-gray-400 text-sm">Automated invoices, payment processing, subscription billing</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-pink-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-chart-line text-pink-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Analytics</h3>
+          <p class="text-gray-400 text-sm">Business insights, customer behavior, revenue tracking</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-red-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-plug text-red-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Integrations</h3>
+          <p class="text-gray-400 text-sm">Google Calendar, Stripe, Twilio, HubSpot, Salesforce</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-indigo-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-mobile text-indigo-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Mobile App</h3>
+          <p class="text-gray-400 text-sm">Manage your business on the go, iOS & Android ready</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-xl p-6">
+          <div class="w-12 h-12 bg-teal-600/20 rounded-lg flex items-center justify-center mb-4">
+            <i class="fas fa-key text-teal-400 text-xl"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">API Access</h3>
+          <p class="text-gray-400 text-sm">Full API for custom integrations and workflows</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
+        <p class="text-xl text-gray-400">Choose the plan that fits your business</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Basic -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700">
+          <h3 class="text-2xl font-bold mb-2">Basic</h3>
+          <p class="text-gray-400 mb-6">For solo practitioners</p>
+          <div class="text-4xl font-bold mb-6">$299<span class="text-lg text-gray-400">/month</span></div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>AI Receptionist</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Smart Scheduling</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Basic CRM (500 contacts)</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Email Support</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>1 User</li>
+          </ul>
+          <a href="/dashboard" class="block text-center bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold transition">Start Free Trial</a>
+          <p class="text-center text-sm text-gray-400 mt-4">14-day free trial</p>
+        </div>
+
+        <!-- Standard -->
+        <div class="bg-gradient-to-b from-purple-600 to-purple-800 rounded-2xl p-8 transform scale-105">
+          <div class="text-sm bg-white/20 inline-block px-3 py-1 rounded-full mb-4">Most Popular</div>
+          <h3 class="text-2xl font-bold mb-2">Standard</h3>
+          <p class="text-purple-200 mb-6">For small teams</p>
+          <div class="text-4xl font-bold mb-6">$499<span class="text-lg text-purple-200">/month</span></div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center"><i class="fas fa-check text-white mr-3"></i>Everything in Basic</li>
+            <li class="flex items-center"><i class="fas fa-check text-white mr-3"></i>Advanced CRM (5K contacts)</li>
+            <li class="flex items-center"><i class="fas fa-check text-white mr-3"></i>Billing & Invoicing</li>
+            <li class="flex items-center"><i class="fas fa-check text-white mr-3"></i>Analytics Dashboard</li>
+            <li class="flex items-center"><i class="fas fa-check text-white mr-3"></i>Google Calendar Sync</li>
+            <li class="flex items-center"><i class="fas fa-check text-white mr-3"></i>5 Users</li>
+          </ul>
+          <a href="/dashboard" class="block text-center bg-white text-purple-600 hover:bg-purple-50 py-3 rounded-lg font-semibold transition">Start Free Trial</a>
+          <p class="text-center text-sm text-purple-200 mt-4">Save 10% with annual billing</p>
+        </div>
+
+        <!-- Premium -->
+        <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700">
+          <h3 class="text-2xl font-bold mb-2">Premium</h3>
+          <p class="text-gray-400 mb-6">For growing businesses</p>
+          <div class="text-4xl font-bold mb-6">$799<span class="text-lg text-gray-400">/month</span></div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Everything in Standard</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Unlimited CRM Contacts</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>AI Customer Insights</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Multi-Location Support</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Priority Support</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i>Unlimited Users</li>
+          </ul>
+          <a href="/dashboard" class="block text-center bg-gray-700 hover:bg-gray-600 py-3 rounded-lg font-semibold transition">Contact Sales</a>
+          <p class="text-center text-sm text-gray-400 mt-4">Custom enterprise plans available</p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-gray-400">
+          <i class="fas fa-gift text-purple-400 mr-2"></i>
+          All plans include 14-day free trial • No credit card required • Cancel anytime
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="gradient-bg py-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
+      <p class="text-xl text-purple-100 mb-8">Join hundreds of SMBs already using our AI Suite</p>
+      <div class="flex justify-center space-x-4">
+        <a href="/dashboard" class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 text-lg">
+          Start Your 14-Day Free Trial
+        </a>
+      </div>
+      <p class="mt-4 text-purple-200 text-sm">No credit card required • Setup in 5 minutes</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 py-12 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-brain text-2xl text-purple-400"></i>
+        <span class="font-bold">AI Suite for SMBs</span>
+      </div>
+      <div class="text-gray-400 text-sm">
+        © 2026 AI Suite for SMBs. Built for service businesses.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showIndustry(industry) {
+      console.log('Industry selected:', industry);
+      // Redirect to dashboard with industry preset
+      window.location.href = '/dashboard?industry=' + industry;
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
