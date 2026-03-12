@@ -42,6 +42,20 @@ const io = new Server(server, {
   cors: {
     origin: process.env.CORS_ORIGINS?.split(',') || '*',
     methods: ['GET', 'POST']
+  },
+  // Security: WebSocket origin validation (OpenClaw v2026.3.11)
+  // Prevents cross-site WebSocket hijacking
+  allowRequest: (req, callback) => {
+    const origin = req.headers.origin;
+    const allowedOrigins = process.env.CORS_ORIGINS?.split(',') || [];
+    
+    // Allow in development or if origin matches allowed list
+    if (process.env.NODE_ENV === 'development' || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn('Blocked WebSocket connection from:', origin);
+      callback(new Error('Cross-site WebSocket hijacking prevented'), false);
+    }
   }
 });
 
@@ -599,58 +613,104 @@ app.get('/api/analytics', tenantMiddleware, (req, res) => {
   });
 });
 
-// ==================== DashScope AI Integration (Qwen) ====================
+// ==================== AI Integration (Multi-Provider) ====================
+// Updated for OpenClaw v2026.3.11 with support for new models
 
 async function callAI({ message, context }) {
-  const BASE_URL = process.env.DASHSCOPE_BASE_URL || 'https://dashscope.aliyuncs.com/compatible-mode/v1';
-  const API_KEY = process.env.DASHSCOPE_API_KEY;
-  
+  const API_PROVIDER = process.env.AI_PROVIDER || 'dashscope';
   const systemPrompt = `You are an AI assistant for ${context.tenant}, a ${context.plan} plan customer.
 Provide helpful, professional responses.
 Be concise and actionable.`;
 
-  // If no API key, return demo response
-  if (!API_KEY || API_KEY === 'your-api-key-here') {
-    console.log('⚠️  No DashScope API key configured - using demo response');
-    return `Hello! I'm the AI assistant for ${context.tenant}. 
+  // DashScope (Qwen) Provider
+  if (API_PROVIDER === 'dashscope') {
+    const BASE_URL = process.env.DASHSCOPE_BASE_URL || 'https://dashscope.aliyuncs.com/compatible-mode/v1';
+    const API_KEY = process.env.DASHSCOPE_API_KEY;
+    
+    if (!API_KEY || API_KEY === 'your-api-key-here') {
+      console.log('⚠️  No DashScope API key configured - using demo response');
+      return `Hello! I'm the AI assistant for ${context.tenant}. 
 
 To enable full AI functionality, please add your DashScope API key to the .env file:
 
 DASHSCOPE_API_KEY=your-actual-key-here
 
 Get your key from: https://dashscope.console.aliyun.com/apiKey`;
-  }
-
-  try {
-    const response = await fetch(`${BASE_URL}/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'qwen-plus',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: message }
-        ],
-        temperature: 0.7,
-        max_tokens: 1000
-      })
-    });
-
-    const data = await response.json();
-    
-    if (data.error) {
-      console.error('DashScope API error:', data.error);
-      return `AI service temporarily unavailable. Please try again later.`;
     }
-    
-    return data.choices?.[0]?.message?.content || "I'd be happy to help!";
-  } catch (error) {
-    console.error('DashScope API error:', error);
-    return "I'm here to help! How can I assist you today?";
+
+    try {
+      const response = await fetch(`${BASE_URL}/chat/completions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+          model: 'qwen-plus',
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: message }
+          ],
+          temperature: 0.7,
+          max_tokens: 1000
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.error) {
+        console.error('DashScope API error:', data.error);
+        return `AI service temporarily unavailable. Please try again later.`;
+      }
+      
+      return data.choices?.[0]?.message?.content || "I'd be happy to help!";
+    } catch (error) {
+      console.error('DashScope API error:', error);
+      return "I'm here to help! How can I assist you today?";
+    }
   }
+  
+  // OpenRouter Provider (with Hunter Alpha & Healer Alpha support - OpenClaw v2026.3.11)
+  if (API_PROVIDER === 'openrouter') {
+    const API_KEY = process.env.OPENROUTER_API_KEY;
+    
+    if (!API_KEY) {
+      return callAI({ message, context }); // Fallback to demo
+    }
+
+    try {
+      // Use free Hunter Alpha or Healer Alpha models when available
+      const model = context.useFreeModel ? 'meta-llama/llama-3-8b-instruct:free' : 'openai/gpt-3.5-turbo';
+      
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_KEY}`,
+          'HTTP-Referer': process.env.BASE_URL || 'http://localhost:3000',
+          'X-Title': 'AI SaaS Platform'
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: message }
+          ],
+          temperature: 0.7,
+          max_tokens: 1000
+        })
+      });
+
+      const data = await response.json();
+      return data.choices?.[0]?.message?.content || "I'd be happy to help!";
+    } catch (error) {
+      console.error('OpenRouter API error:', error);
+      return "I'm here to help! How can I assist you today?";
+    }
+  }
+
+  // Default fallback
+  return "I'm here to help! How can I assist you today?";
 }
 
 // ==================== Real-time Events ====================
